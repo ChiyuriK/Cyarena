@@ -1,0 +1,20 @@
+{
+  "name": "ciying-arena",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "packageManager": "pnpm@11.28.5",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "node --watch apps/server/src/index.ts",
+    "start": "node apps/server/src/index.ts",
+    "test": "node scripts/run-tests.mjs",
+    "typecheck": "node_modules/.bin/tsc -p packages/shared/tsconfig.json && node_modules/.bin/tsc -p packages/engine/tsconfig.json && node_modules/.bin/tsc -p apps/server/tsconfig.json"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "@types/node": "^22.10.2"
+  }
+}

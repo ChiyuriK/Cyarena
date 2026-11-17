@@ -1,0 +1,19 @@
+services:
+  arena:
+    build: .
+    container_name: ciying-arena
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      PORT: "3000"
+      DATA_DIR: "/app/data"
+      # 如果通过反向代理暴露，可设置公开域名（用于日志/分享链接）
+      # PUBLIC_ORIGIN: "https://ciying.example.com"
+    volumes:
+      - ./data:/app/data
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
